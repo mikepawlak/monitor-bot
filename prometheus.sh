@@ -1,5 +1,6 @@
 helm upgrade prometheus stable/prometheus \
     --install \
+    --namespace='monitoring' \
     --set kube-state-metrics.image.repository="mpawlak719/kube-state-metrics" \
     --set kube-state-metrics.image.pullPolicy="Always" \
     --set server.persistentVolume.storageClass="nfs-client" \
