@@ -1,4 +1,5 @@
 helm upgrade prometheus stable/prometheus \
+    -f prometheus/values.yaml \
     --install \
     --namespace='monitoring' \
     --set kube-state-metrics.image.repository="mpawlak719/kube-state-metrics" \

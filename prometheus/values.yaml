@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  alertmanagerCustomFiles:
+    global: null
+    route:
+      group_by: [cluster]
+      # If an alert isn't caught by a route, send it to slack
+      routes:
+        # send severity=slack alerts to slack
+        - match:
+            severity: critical
+          receiver: slack_alerting
+          repeat_interval: 1m
+          group_interval: 1m
+    receivers:
+      - name: slack_alerting
+        slack_configs:
+          - api_url: https://hooks.slack.com/services/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
+            send_resolved: true
+            channel: "#automation"
+            text: "description: {{ .CommonAnnotations.description }}\nsummary: {{ .CommonAnnotations.summary }}"
